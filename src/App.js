@@ -7,7 +7,7 @@ const App = () => {
 
     <div>
       <Hero />
-      <Features />
+
     </div>
 
   )
