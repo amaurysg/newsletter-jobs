@@ -1,42 +1,94 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import useForm from "../hooks/useForm";
 
 const Subscribe = () => {
 
+  // const [email, setEmail] = useState('garay@gmail.com')
+  // const [lastName, setLastName] = useState('garay')
+  // const [firstName, setFirstName] = useState('soto')
 
-  const [datos, setDatos] = useState({
-    email: '',
-  })
 
-  const handleInputChange = (event) => {
-    console.log(event.target.name)
-    console.log(event.target.value)
-    setDatos({
-      ...datos,
-      [event.target.name]: event.target.value
+
+
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    //First fetch
+    fetch('https://mastermailing.herokuapp.com/subscriber/register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      //here valid my values
+      body: JSON.stringify(
+        {
+          "subscriber": {
+            "firstName": "mau",
+            "lastName": "Garay",
+            "email": "new-test10@gmail.com"
+          }
+        }
+      )
     })
-  }
+      .then(function (response) {
+        //responde convert to json
+        console.log('---> response json to token')
+        return response.json()
+        //here return token
+      })
 
+      .then(token => {
+        console.log('--->Token:', token)
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('form subscribe!')
-  }
+        //with this token make second fetch
+        fetch('https://mastermailing.herokuapp.com/subscriber/send', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          //now my body is token 
+          body: JSON.stringify(token)
+        })
+          .then(result => console.log('--->send:', result.json()))
+          .catch(error => console.log(error))
+      })
+
+      .catch(error => console.log(error))
+  };
 
 
 
 
   return (
     <div>
-      <form className="m-4 flex" type="submit" onSubmit={handleSubmit}>
+      <form className="m-4 flex" type="submit" onSubmit={handleSubmit} >
         <input
           autoComplete="off"
           type='text'
           name="email"
+          // value={email}
 
-          onBlur={handleInputChange}
+          // onChange={handleInputChange}
           className="rounded-l-lg p-4 border-t mr-0 border-b border-l text-gray-800 border-gray-200 bg-white"
           placeholder="your@mail.com"
+
+        />
+        <input
+          autoComplete="off"
+          type='text'
+          name="lastName"
+          // value={lastName}
+          // onChange={handleInputChange}
+          className="rounded-l-lg p-4 border-t mr-0 border-b border-l text-gray-800 border-gray-200 bg-white"
+          placeholder="Name"
+
+        />
+        <input
+          autoComplete="off"
+          type='text'
+          name="firstName"
+          // value={firstName}
+
+          // onChange={handleInputChange}
+          className="rounded-l-lg p-4 border-t mr-0 border-b border-l text-gray-800 border-gray-200 bg-white"
+          placeholder="Lastname"
 
         />
 
