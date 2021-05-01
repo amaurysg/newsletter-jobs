@@ -22,9 +22,9 @@ const Subscribe = () => {
       body: JSON.stringify(
         {
           "subscriber": {
-            "firstName": "mau",
-            "lastName": "Garay",
-            "email": "new-test10@gmail.com"
+            "firstName": "Amaury",
+            "lastName": "Soto",
+            "email": "amaurysotog@gmail.com"
           }
         }
       )
@@ -46,7 +46,11 @@ const Subscribe = () => {
           //now my body is token 
           body: JSON.stringify(token)
         })
-          .then(result => console.log('--->send:', result.json()))
+          .then(result => console.log('--->send:', result.json())
+            .then()
+
+          )
+
           .catch(error => console.log(error))
       })
 
