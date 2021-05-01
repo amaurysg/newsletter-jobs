@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from 'react'
-import useForm from "../hooks/useForm";
+import { useForm } from 'react-hook-form'
 
 const Subscribe = () => {
 
-  // const [email, setEmail] = useState('garay@gmail.com')
-  // const [lastName, setLastName] = useState('garay')
-  // const [firstName, setFirstName] = useState('soto')
+  const { register, errors, handleSubmit } = useForm()
 
 
 
+  const onSubmit = (data) => {
 
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
+    // console.log(data.firstName)
+    // console.log(data.lastName)
+    // console.log(data.email)
 
     //First fetch
     fetch('https://mastermailing.herokuapp.com/subscriber/register', {
@@ -22,9 +21,9 @@ const Subscribe = () => {
       body: JSON.stringify(
         {
           "subscriber": {
-            "firstName": "Amaury",
-            "lastName": "Soto",
-            "email": "amaurysotog@gmail.com"
+            "firstName": data.firstName,
+            "lastName": data.lastName,
+            "email": data.email
           }
         }
       )
@@ -46,61 +45,76 @@ const Subscribe = () => {
           //now my body is token 
           body: JSON.stringify(token)
         })
-          .then(result => console.log('--->send:', result.json())
-            .then()
-
-          )
+          .then(result => console.log('--->send:', result.json()))
 
           .catch(error => console.log(error))
       })
 
       .catch(error => console.log(error))
+
+
   };
 
 
 
 
   return (
-    <div>
-      <form className="m-4 flex" type="submit" onSubmit={handleSubmit} >
-        <input
-          autoComplete="off"
-          type='text'
-          name="email"
-          // value={email}
 
-          // onChange={handleInputChange}
-          className="rounded-l-lg p-4 border-t mr-0 border-b border-l text-gray-800 border-gray-200 bg-white"
-          placeholder="your@mail.com"
-
-        />
-        <input
-          autoComplete="off"
-          type='text'
-          name="lastName"
-          // value={lastName}
-          // onChange={handleInputChange}
-          className="rounded-l-lg p-4 border-t mr-0 border-b border-l text-gray-800 border-gray-200 bg-white"
-          placeholder="Name"
-
-        />
-        <input
-          autoComplete="off"
-          type='text'
-          name="firstName"
-          // value={firstName}
-
-          // onChange={handleInputChange}
-          className="rounded-l-lg p-4 border-t mr-0 border-b border-l text-gray-800 border-gray-200 bg-white"
-          placeholder="Lastname"
-
-        />
+    <div className="max-w-7xl mx-auto px-4 ">
+      <div className="max-w-6xl mx-auto ">
+        <div className="mt-8 overflow-hidden">
+          <div className="grid grid-cols-1 md:grid-cols-2">
 
 
-        <button className="px-8 rounded-r-lg bg-indigo-600  text-white font-bold p-4 uppercase  border-t border-b border-r">Subscribe</button>
-      </form>
+            <form className="p-6 flex flex-col justify-center" onSubmit={handleSubmit(onSubmit)}>
+              <div className="flex flex-col">
+                <label for="name" className="hidden">Full Name</label>
+                <input
+                  type="text"
+                  name="firstName"
+                  {...register("firstName")}
+                  id="name"
+                  placeholder="First Name"
+                  className="w-100 mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 text-gray-800 font-semibold focus:border-indigo-500 focus:outline-none" />
+              </div>
+
+              <div className="flex flex-col mt-2">
+                <label for="email" className="hidden">Email</label>
+                <input
+                  type="text"
+                  name="lastName"
+                  {...register("lastName")}
+                  id="email"
+                  placeholder="Last Name"
+                  className="w-100 mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 text-gray-800 font-semibold focus:border-indigo-500 focus:outline-none" />
+              </div>
+
+              <div className="flex flex-col mt-2">
+                <label for="tel" className="hidden">Number</label>
+                <input
+                  type="text"
+                  name="email"
+                  {...register("email")}
+                  id="email"
+                  placeholder="your@email.com"
+                  className="w-100 mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 text-gray-800 font-semibold focus:border-indigo-500 focus:outline-none" />
+              </div>
+
+              <button type="submit" className="md:w-32 bg-indigo-600 hover:bg-blue-dark text-white font-bold py-3 px-6 rounded-lg mt-3 hover:bg-indigo-500 transition ease-in-out duration-300">
+                Subscribe
+              </button>
+
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
+
+
+
   )
 }
 
 export default Subscribe
+
+

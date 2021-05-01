@@ -2,6 +2,7 @@ import React from 'react'
 import Hero from './components/Hero'
 import Features from './components/Features'
 import Positions from './components/Positions'
+import Subscribe from './components/Subscribe'
 
 
 const App = () => {
@@ -9,8 +10,9 @@ const App = () => {
 
     <div>
       <Hero />
-      <Positions />
+      <Subscribe />
       <Features />
+      <Positions></Positions>
 
 
     </div>

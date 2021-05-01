@@ -2,7 +2,6 @@
 import { Fragment } from 'react'
 import { Popover, Transition } from '@headlessui/react'
 import { MenuIcon, XIcon } from '@heroicons/react/outline'
-import Subscribe from './Subscribe'
 
 const navigation = [
   { name: 'Jobs', href: '#' },
@@ -131,7 +130,7 @@ export default function Example() {
               </p>
               <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
 
-                <Subscribe />
+
               </div>
             </div>
           </main>
