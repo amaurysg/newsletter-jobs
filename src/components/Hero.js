@@ -5,10 +5,10 @@ import { MenuIcon, XIcon } from '@heroicons/react/outline'
 import Subscribe from './Subscribe'
 
 const navigation = [
-  { name: 'Product', href: '#' },
+  { name: 'Jobs', href: '#' },
   { name: 'Features', href: '#' },
-  { name: 'Marketplace', href: '#' },
-  { name: 'Company', href: '#' },
+  { name: 'Positions', href: '#' },
+
 ]
 
 export default function Example() {
