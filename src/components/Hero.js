@@ -39,7 +39,7 @@ export default function Example() {
                           <span className="sr-only">Workflow</span>
                           <img
                             className="h-8 w-auto sm:h-10"
-                            src="https://seekvectorlogo.net/wp-content/uploads/2018/11/heyjobs-vector-logo-xs.png"
+                            src='https://i.postimg.cc/Dy3w7Zky/Logo-Hey-Jobs.jpg'
                           />
                         </a>
                         <div className="-mr-2 flex items-center md:hidden">
@@ -83,7 +83,7 @@ export default function Example() {
                         <div>
                           <img
                             className="h-8 w-auto"
-                            src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
+                            src="https://i.postimg.cc/Dy3w7Zky/Logo-Hey-Jobs.jpg"
                             alt=""
                           />
                         </div>
