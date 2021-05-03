@@ -12,8 +12,8 @@ const App = () => {
     <div>
       <Hero />
       <Subscribe />
-      <Features />
       <Positions></Positions>
+      <Features />
       <Footer />
 
     </div>

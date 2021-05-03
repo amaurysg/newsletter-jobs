@@ -6,6 +6,7 @@ import swal from 'sweetalert'
 
 const Subscribe = () => {
 
+  //Here values from hooks useForm
   const { register, errors, handleSubmit } = useForm()
 
 
@@ -39,6 +40,7 @@ const Subscribe = () => {
       })
       .then(token => {
         console.log('--->Token or error: ', token)
+        //Here, if my response contains error, return swal whit error from endpoint
         if (token.error) {
           return swal("Something is wrong", `${token.error}`, "warning");
         }
@@ -78,13 +80,13 @@ const Subscribe = () => {
 
   return (
 
-    <div className="max-w-7xl mx-auto px-4 ">
-      <div className="max-w-6xl mx-auto ">
+    <div className="max-w-7xl mx-auto px-8 my-8">
+      <div className="max-w-6xl ">
         <div className="mt-8 overflow-hidden">
           <div className="grid grid-cols-1 md:grid-cols-2">
 
 
-            <form className="p-6 flex flex-col justify-center" onSubmit={handleSubmit(onSubmit)}>
+            <form className="flex flex-col justify-center" onSubmit={handleSubmit(onSubmit)}>
               <div className="flex flex-col">
                 <label for="name" className="hidden">Full Name</label>
                 <input
