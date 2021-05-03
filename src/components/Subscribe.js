@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
+import swal from 'sweetalert'
+
+
 
 const Subscribe = () => {
 
@@ -34,9 +37,11 @@ const Subscribe = () => {
         return response.json()
         //here return token
       })
-
       .then(token => {
-        console.log('--->Token:', token)
+        console.log('--->Token or error: ', token)
+        if (token.error) {
+          return swal("Something is wrong", `${token.error}`, "warning");
+        }
 
         //with this token make second fetch
         fetch('https://mastermailing.herokuapp.com/subscriber/send', {
@@ -45,12 +50,25 @@ const Subscribe = () => {
           //now my body is token 
           body: JSON.stringify(token)
         })
-          .then(result => console.log('--->send:', result.json()))
+          .catch(error => {
+            swal("Something is wrong", `${error}`, "warning");
 
-          .catch(error => console.log(error))
+          })
+          .then(result => {
+            console.log('--->send:', result.json())
+            swal("Registered User", "Check your notification email", "success");
+          })
+
+          .catch(error => {
+
+            console.log(error)
+          })
       })
 
-      .catch(error => console.log(error))
+      .catch(error => {
+        console.log(error)
+
+      })
 
 
   };
